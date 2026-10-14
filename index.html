@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGCSE ICT - Future of Storage Devices Quiz (Shuffled Answers)</title>
+    <style>
+        :root {
+            --bg-main: #090d16;
+            --bg-card: #131d31;
+            --border-color: #223354;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        header h1 {
+            color: var(--accent);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .quiz-status {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .score-pill {
+            background-color: #0c4a6e;
+            color: #7dd3fc;
+            padding: 0.35rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #0284c7;
+        }
+
+        .card {
+            width: 100%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            background-color: #1e293b;
+            color: var(--text-main);
+            padding: 1rem 1.25rem;
+            border-radius: 0.85rem;
+            border: 1px solid #334155;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #283548;
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .option-btn.correct {
+            background-color: #064e3b !important;
+            border-color: #059669 !important;
+            color: #ecfdf5 !important;
+        }
+
+        .option-btn.incorrect {
+            background-color: #7f1d1d !important;
+            border-color: #dc2626 !important;
+            color: #fee2e2 !important;
+        }
+
+        .feedback-box {
+            padding: 1.15rem;
+            border-radius: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .feedback-box.correct-feedback {
+            background-color: #022c22;
+            border: 1px solid #047857;
+            color: #a7f3d0;
+        }
+
+        .feedback-box.incorrect-feedback {
+            background-color: #450a0a;
+            border: 1px solid #b91c1c;
+            color: #fecdd3;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #0f172a;
+            font-weight: 700;
+            padding: 0.85rem 1.75rem;
+            border-radius: 0.85rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .results-card {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .results-card h2 {
+            font-size: 2.25rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .results-card p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>IGCSE ICT Practice Quiz</h1>
+        <p>Topic 3.4 The Future of Storage Devices</p>
+    </header>
+
+    <main>
+        <div class="quiz-status">
+            <span id="question-counter">Question 1 of 10</span>
+            <span id="score-display" class="score-pill">Score: 0</span>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="card">
+            <div id="question-box" class="question-text">
+                Loading question...
+            </div>
+
+            <div id="options-container" class="options-list">
+                <!-- Options populated dynamically -->
+            </div>
+
+            <div id="feedback-box" class="feedback-box hidden">
+                <!-- Feedback populated dynamically -->
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="next-btn" onclick="nextQuestion()" class="btn-primary hidden">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div id="results-container" class="card results-card hidden">
+            <h2>Quiz Completed! 🎉</h2>
+            <p id="final-score">You scored X out of 10</p>
+            <button onclick="restartQuiz()" class="btn-primary">Restart Quiz</button>
+        </div>
+    </main>
+
+    <footer>
+        IGCSE ICT Revision &bull; Future of Storage Devices
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                question: "What is a major trend in the future development of solid-state storage devices (SSDs and memory cards)?",
+                options: [
+                    { text: "Increasing storage capacities while reducing physical size and lowering cost per gigabyte", isCorrect: true, rationale: "Advances in 3D NAND flash manufacturing continue to pack higher capacities into smaller form factors." },
+                    { text: "Replacing all flash memory with heavy magnetic iron oxide tape spools", isCorrect: false, rationale: "Magnetic tape is older archiving technology, not a future trend for portable storage." },
+                    { text: "Reverting back to mechanical spinning hard disk platters with read heads", isCorrect: false, rationale: "Mechanical drives are being replaced by solid-state technology due to speed and durability." },
+                    { text: "Eliminating all data storage entirely so computers have no memory", isCorrect: false, rationale: "Computers always require non-volatile backing storage for files and operating systems." }
+                ]
+            },
+            {
+                question: "What is 'cloud storage', and how does it represent the future of data storage for everyday users?",
+                options: [
+                    { text: "Storing data on remote server farms accessed via the internet, allowing files to be accessed from any device anywhere", isCorrect: true, rationale: "Cloud storage shifts local file keeping to online remote data centers, providing scalable access and automated backups." },
+                    { text: "Storing data inside local USB flash drives plugged into a router", isCorrect: false, rationale: "Local USB drives plugged into routers form NAS (Network Attached Storage), not cloud storage." },
+                    { text: "Storing data permanently inside computer monitor glass screens", isCorrect: false, rationale: "Monitors display visual output, not file storage." },
+                    { text: "Storing data magnetically inside household refrigerator doors", isCorrect: false, rationale: "This is incorrect." }
+                ]
+            },
+            {
+                question: "What is DNA data storage, an experimental technology studied for ultra-long-term future archiving?",
+                options: [
+                    { text: "Encoding digital binary data (1s and 0s) into synthetic DNA base sequences (A, C, G, T) for immense information density and longevity", isCorrect: true, rationale: "DNA storage can hold petabytes of data in microscopic volumes and last for thousands of years without power." },
+                    { text: "Storing computer files inside biological human brain tissue cells", isCorrect: false, rationale: "DNA storage uses synthesized organic polymer molecules in secure laboratory vials, not living human brains." },
+                    { text: "Printing barcodes onto medical prescription paper sheets", isCorrect: false, rationale: "This describes barcode printing." },
+                    { text: "Using organic inkjet printer ink cartridges on paper documents", isCorrect: false, rationale: "This describes inkjet printing." }
+                ]
+            },
+            {
+                question: "What is a major advantage of cloud storage over local physical storage (like hard drives or USB sticks)?",
+                options: [
+                    { text: "Automatic offsite backups, remote accessibility from any device, and effortless file sharing without needing physical media", isCorrect: true, rationale: "Cloud storage eliminates the need to carry physical drives and protects data against local hardware failure or theft." },
+                    { text: "Absolute immunity to internet connection outages or cyber attacks", isCorrect: false, rationale: "Cloud storage requires internet access and is vulnerable to online server outages or security breaches." },
+                    { text: "Zero financial subscription or internet broadband costs", isCorrect: false, rationale: "Cloud storage often requires ongoing monthly subscription fees and fast internet." },
+                    { text: "Faster file transfer speeds than local M.2 NVMe SSDs", isCorrect: false, rationale: "Local SSDs are limited only by hardware buses, whereas cloud speed is bottlenecked by internet bandwidth." }
+                ]
+            },
+            {
+                question: "What is a major disadvantage or risk associated with cloud storage services?",
+                options: [
+                    { text: "Reliance on a stable internet connection (data cannot be accessed offline) and potential privacy/security concerns regarding third-party data centers", isCorrect: true, rationale: "If internet connection is lost or remote servers experience downtime, stored files become temporarily inaccessible." },
+                    { text: "Cloud storage drives are extremely heavy and fragile when dropped", isCorrect: false, rationale: "Cloud storage is virtual and hosted in remote data centers, having no physical local weight for the user." },
+                    { text: "Cloud storage files can only be accessed while underwater", isCorrect: false, rationale: "This is incorrect." },
+                    { text: "Cloud storage requires manual winding of plastic tape reels", isCorrect: false, rationale: "This describes magnetic tape." }
+                ]
+            },
+            {
+                question: "What is 'holographic data storage' as an advanced future storage concept?",
+                options: [
+                    { text: "An experimental optical storage technology that records data throughout the entire volume of a crystal or photopolymer disc using intersecting laser beams", isCorrect: true, rationale: "Holographic storage utilizes 3D optical interference patterns to achieve massive data density and instantaneous read speeds." },
+                    { text: "Projecting 3D cartoon characters into a bedroom using a multimedia projector", isCorrect: false, rationale: "This is projection display, not data storage." },
+                    { text: "Printing 3D plastic machine parts using thermal filament spools", isCorrect: false, rationale: "This describes 3D printing." },
+                    { text: "Storing files inside magnetic hard disk drive platters", isCorrect: false, rationale: "This describes traditional HDDs."  }
+                ]
+            },
+            {
+                question: "How are data centers evolving to meet future global data storage demands?",
+                options: [
+                    { text: "Scaling up with ultra-dense server racks, renewable energy integration, high-capacity enterprise SSDs, and automated cooling systems", isCorrect: true, rationale: "Future data centers require massive scalability, energy efficiency, and high-performance storage hardware to handle big data." },
+                    { text: "Replacing all computer servers with dot-matrix impact printers", isCorrect: false, rationale: "Printers output paper; they do not host server networks." },
+                    { text: "Storing all global data on manual punch cards inside filing cabinets", isCorrect: false, rationale: "Punch cards are obsolete." },
+                    { text: "Disconnecting all servers from the internet permanently", isCorrect: false, rationale: "Server connectivity is essential for global networks." }
+                ]
+            },
+            {
+                question: "What is 'edge computing' in relation to modern data storage and processing trends?",
+                options: [
+                    { text: "Processing and storing data locally on smart devices or edge servers close to where data is collected rather than sending everything to a distant cloud center", isCorrect: true, rationale: "Edge computing reduces latency and bandwidth usage by handling data locally near IoT sensors and cameras." },
+                    { text: "Storing data strictly on the physical edge of a hard disk platter", isCorrect: false, rationale: "This is physical disk geometry, not edge computing." },
+                    { text: "Connecting computers using frayed electrical wires", isCorrect: false, rationale: "This is incorrect." },
+                    { text: "Backing up files onto optical CD-R discs", isCorrect: false, rationale: "This is optical archiving." }
+                ]
+            },
+            {
+                question: "Why might quantum storage or quantum memory become important in future computing?",
+                options: [
+                    { text: "To store and manipulate complex quantum states for ultra-powerful quantum computers, bypassing the limits of binary transistor memory", isCorrect: true, rationale: "Quantum computing requires specialized quantum memory to hold qubits securely." },
+                    { text: "To make USB flash drives glow in the dark with neon colors", isCorrect: false, rationale: "Neon aesthetics are unrelated to quantum mechanics." },
+                    { text: "To print high-definition color photographs on paper", isCorrect: false, rationale: "Photo printing uses inkjet printers." },
+                    { text: "To measure room temperature in weather stations", isCorrect: false, rationale: "This uses temperature sensors." }
+                ]
+            },
+            {
+                question: "Which summary best describes the overall future direction of storage devices in IGCSE ICT?",
+                options: [
+                    { text: "Moving towards higher capacity, faster solid-state speeds, ubiquitous cloud accessibility, and experimental high-density technologies like DNA and holographic storage", isCorrect: true, rationale: "The future emphasizes speed, miniaturization, remote cloud connectivity, and revolutionary high-density archival materials." },
+                    { text: "Returning exclusively to 1950s magnetic punch cards and floppy disks", isCorrect: false, rationale: "Technology progresses forward toward higher density and speed." },
+                    { text: "Eliminating all forms of digital storage permanently worldwide", isCorrect: false, rationale: "Digital storage is growing rapidly, not disappearing." },
+                    { text: "Replacing all computer hardware with paper notebooks", isCorrect: false, rationale: "This is incorrect." }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
+
+        const questionCounter = document.getElementById("question-counter");
+        const scoreDisplay = document.getElementById("score-display");
+        const questionBox = document.getElementById("question-box");
+        const optionsContainer = document.getElementById("options-container");
+        const feedbackBox = document.getElementById("feedback-box");
+        const nextBtn = document.getElementById("next-btn");
+        const quizContainer = document.getElementById("quiz-container");
+        const resultsContainer = document.getElementById("results-container");
+        const finalScore = document.getElementById("final-score");
+
+        function loadQuestion() {
+            answered = false;
+            feedbackBox.classList.add("hidden");
+            nextBtn.classList.add("hidden");
+            
+            const q = questions[currentQuestionIndex];
+            questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            scoreDisplay.textContent = `Score: ${score}`;
+            questionBox.textContent = q.question;
+
+            // Shuffle options array randomly so correct answer is not always first
+            let shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+
+            optionsContainer.innerHTML = "";
+            shuffledOptions.forEach((opt) => {
+                const btn = document.createElement("button");
+                btn.className = "option-btn";
+                btn.textContent = opt.text;
+                btn.onclick = () => selectOption(opt, shuffledOptions);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(selectedOpt, shuffledOptions) {
+            if (answered) return;
+            answered = true;
+
+            const allOptionButtons = optionsContainer.children;
+
+            shuffledOptions.forEach((opt, idx) => {
+                allOptionButtons[idx].disabled = true;
+                if (opt.isCorrect) {
+                    allOptionButtons[idx].classList.add("correct");
+                } else if (opt === selectedOpt && !selectedOpt.isCorrect) {
+                    allOptionButtons[idx].classList.add("incorrect");
+                }
+            });
+
+            feedbackBox.classList.remove("hidden");
+            if (selectedOpt.isCorrect) {
+                score++;
+                scoreDisplay.textContent = `Score: ${score}`;
+                feedbackBox.className = "feedback-box correct-feedback";
+                feedbackBox.innerHTML = `<strong>Correct!</strong> ${selectedOpt.rationale}`;
+            } else {
+                feedbackBox.className = "feedback-box incorrect-feedback";
+                feedbackBox.innerHTML = `<strong>Incorrect.</strong> ${selectedOpt.rationale}`;
+            }
+
+            if (currentQuestionIndex < questions.length - 1) {
+                nextBtn.textContent = "Next Question";
+            } else {
+                nextBtn.textContent = "View Results";
+            }
+            nextBtn.classList.remove("hidden");
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                quizContainer.classList.add("hidden");
+                resultsContainer.classList.remove("hidden");
+                finalScore.textContent = `You scored ${score} out of ${questions.length}`;
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            resultsContainer.classList.add("hidden");
+            quizContainer.classList.remove("hidden");
+            loadQuestion();
+        }
+
+        // Initialize quiz on load
+        loadQuestion();
+    </script>
+</body>
+</html>
